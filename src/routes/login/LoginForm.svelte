@@ -3,6 +3,7 @@
 	import Button from '$lib/components/ui/button/button.svelte';
 	import { Checkbox } from '$lib/components/ui/checkbox';
 	import { Eye, EyeOff } from 'lucide-svelte';
+	import { resolve } from '$app/paths';
 
 	let email = $state('');
 	let password = $state('');
@@ -63,7 +64,9 @@
 				Remember Me
 			</label>
 		</div>
-		<a href="/forgot-password" class="text-sm text-blue-600 hover:underline"> Forgot Password? </a>
+		<a href={resolve('/forgot-password')} class="text-sm text-blue-600 hover:underline">
+			Forgot Password?
+		</a>
 	</div>
 
 	<Button type="button" onclick={handleLogin} class="w-full text-base font-medium">Login</Button>

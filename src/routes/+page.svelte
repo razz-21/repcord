@@ -1,8 +1,9 @@
 <script lang="ts">
 	import { goto } from '$app/navigation';
 	import { onMount } from 'svelte';
+	import { resolve } from '$app/paths';
 
 	onMount(() => {
-		goto('/login');
+		goto(resolve('/login'));
 	});
 </script>
