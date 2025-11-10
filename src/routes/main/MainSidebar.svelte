@@ -30,21 +30,29 @@
 	import { LogOutIcon } from 'lucide-svelte';
 	import { goto } from '$app/navigation';
 	import { resolve } from '$app/paths';
+	import {
+		CUSTOMERS_ROUTE,
+		DASHBOARD_ROUTE,
+		PAYMENTS_ROUTE,
+		SETTINGS_ROUTE,
+		USERS_ROUTE
+	} from '@/constants/route';
+	import { page } from '$app/stores';
 
 	const appNavigationItems = [
 		{
 			label: 'Dashboard',
-			href: '#',
+			href: DASHBOARD_ROUTE,
 			icon: ChartAreaIcon
 		},
 		{
 			label: 'Customers',
-			href: '#',
+			href: CUSTOMERS_ROUTE,
 			icon: UsersRoundIcon
 		},
 		{
 			label: 'Payments',
-			href: '#',
+			href: PAYMENTS_ROUTE,
 			icon: CreditCardIcon
 		},
 		{
@@ -54,19 +62,19 @@
 		},
 		{
 			label: 'Users',
-			href: '#',
+			href: USERS_ROUTE,
 			icon: UsersIcon
 		},
 		{
 			label: 'Settings',
-			href: '#',
+			href: SETTINGS_ROUTE,
 			icon: SettingsIcon
 		}
 	];
 
-  function handleLogout() {
-    goto(resolve('/login'));
-  }
+	function handleLogout() {
+		goto(resolve('/login'));
+	}
 </script>
 
 <SidebarRoot class="border-r border-border">
@@ -82,7 +90,7 @@
 			<SidebarMenu>
 				{#each appNavigationItems as item}
 					<SidebarMenuItem>
-						<SidebarMenuButton>
+						<SidebarMenuButton isActive={$page.url.pathname.includes(item.href)}>
 							{#snippet child({ props })}
 								<a href={item.href} {...props}>
 									<item.icon />
@@ -129,7 +137,7 @@
 					<PopoverClose
 						class="flex w-full items-center gap-2 rounded-sm px-2 py-1.5 text-sm transition-colors hover:bg-accent hover:text-accent-foreground"
 						role="menuitem"
-            onclick={handleLogout}
+						onclick={handleLogout}
 					>
 						<LogOutIcon class="size-4" />
 						<span>Logout</span>

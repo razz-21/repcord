@@ -18,7 +18,7 @@
 					<AvatarFallback>ER</AvatarFallback>
 				</Avatar>
 			</div>
-			<div class="flex-1 p-4">
+			<div class="flex-1 p-6">
 				{@render children?.()}
 			</div>
 		</div>
