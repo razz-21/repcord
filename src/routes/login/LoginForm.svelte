@@ -5,13 +5,15 @@
 	import { Eye, EyeOff } from 'lucide-svelte';
 	import { resolve } from '$app/paths';
 
+	let { onLogin }: { onLogin?: () => void } = $props();
+
 	let email = $state('');
 	let password = $state('');
 	let showPassword = $state(false);
 	let rememberMe = $state(false);
 
 	function handleLogin() {
-		console.log('Login attempt', { email, password, rememberMe });
+		onLogin?.();
 	}
 </script>
 
