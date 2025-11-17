@@ -1,6 +1,9 @@
 import z from 'zod';
 import { GenderSchema, UUIDSchema } from '../common/common.schema';
-import { SubscriptionSchema } from '../subscription/subscription.schema';
+import {
+	MembershipSubscriptionSchema,
+	MonthlySubscriptionSchema
+} from '../subscription/subscription.schema';
 
 export const CustomerStatusSchema = z.enum(['active', 'inactive', 'pending', 'archived']);
 
@@ -22,13 +25,14 @@ export const CustomersSchema = z.object({
 	_id: UUIDSchema,
 	firstname: z.string(),
 	lastname: z.string(),
-	birthdate: z.string(),
 	gender: GenderSchema,
+	birthdate: z.string(),
 	email: z.string(),
 	contact: z.string(),
 	address: z.string(),
 	fitnessProfile: z.array(CustomerFitnessProfileSchema).default([]),
-	subscriptions: z.array(SubscriptionSchema).default([]),
+	membershipSubscriptions: z.array(MembershipSubscriptionSchema).default([]),
+	monthlySubscriptions: z.array(MonthlySubscriptionSchema).default([]),
 	status: CustomerStatusSchema,
 	workspace: UUIDSchema,
 	createdAt: z.string(),

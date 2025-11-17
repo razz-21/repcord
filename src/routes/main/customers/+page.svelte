@@ -5,6 +5,9 @@
 	import Button from '@/components/ui/button/button.svelte';
 	import { PlusIcon } from 'lucide-svelte';
 	import StatsCards from './StatsCards.svelte';
+	import { goto } from '$app/navigation';
+	import { CREATE_CUSTOMER_ROUTE } from '@/constants/route';
+	import { resolve } from '$app/paths';
 
 	const samepleCustomers: Customer[] = [
 		{
@@ -40,13 +43,17 @@
 			updatedAt: '2021-01-01'
 		}
 	];
+
+	function handleAddCustomer() {
+		goto(resolve(CREATE_CUSTOMER_ROUTE));
+	}
 </script>
 
 <section class="container mx-auto flex flex-col gap-6">
 	<div class="flex items-center justify-between">
 		<h1 class="text-3xl font-bold">Customers</h1>
 		<div class="flex items-center gap-2">
-			<Button type="button">
+			<Button type="button" onclick={handleAddCustomer}>
 				<PlusIcon class="size-4" />
 				Add Customer
 			</Button>
